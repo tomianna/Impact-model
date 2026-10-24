@@ -1,0 +1,1449 @@
+{
+ "meta": {
+  "company": "Forza Fitness S.p.A.",
+  "title": "Forza Fitness - Digital / Keep members / Expand impact model (version A)",
+  "currency": "EURm",
+  "objective": "profitability (default: NPV of incremental FCF 2025-2029 + terminal value)",
+  "base_year": 2024,
+  "horizon_years": 5,
+  "as_of": "2026-10-23",
+  "prepared_by": "Fresh-run spec (dev/eval-v2.3) with v2.4 history: shock years, derived members per club, bridge",
+  "version": "A",
+  "baseline_justification": "History mixes the COVID trough and rebound with 8 new clubs; the do-nothing case keeps the 46 existing clubs, already at the mature ~2.6k members per club.",
+  "shock_years": [
+   2020,
+   2021
+  ],
+  "shock_note": "COVID: clubs closed about 5 months in 2020 and 2 months in 2021 (case pack)",
+  "baseline_bridge": {
+   "from": "cagr",
+   "items": [
+    {
+     "name": "no new clubs in the do-nothing case (estate CAGR)",
+     "minus": [
+      "hist:clubs_h:cagr"
+     ]
+    },
+    {
+     "name": "members per club: outlook vs record",
+     "plus": [
+      "mem_g"
+     ],
+     "minus": [
+      "hist:mpc_h:cagr"
+     ]
+    }
+   ]
+  }
+ },
+ "actuals": [
+  {
+   "id": "rev",
+   "name": "Revenue (reported)",
+   "unit": "EURm",
+   "role": "revenue",
+   "values": {
+    "2019": 53.0,
+    "2020": 32.5,
+    "2021": 39.4,
+    "2022": 58.7,
+    "2023": 68.1,
+    "2024": 74.9
+   },
+   "source": "Case pack (Forza Fitness brief, fictional reported accounts)",
+   "date": "2026-10-23",
+   "link": "forza_brief.md, case pack table",
+   "grade": "B2"
+  },
+  {
+   "id": "memrev_h",
+   "name": "Membership revenue (reported)",
+   "unit": "EURm",
+   "role": "other",
+   "values": {
+    "2019": 45.9,
+    "2020": 28.6,
+    "2021": 34.6,
+    "2022": 50.9,
+    "2023": 59.1,
+    "2024": 64.8
+   },
+   "source": "Case pack (Forza Fitness brief, fictional reported accounts)",
+   "date": "2026-10-23",
+   "link": "forza_brief.md, case pack table",
+   "grade": "B2",
+   "stream": "membership"
+  },
+  {
+   "id": "ancrev_h",
+   "name": "Ancillary revenue (reported)",
+   "unit": "EURm",
+   "role": "other",
+   "values": {
+    "2019": 7.1,
+    "2020": 3.9,
+    "2021": 4.8,
+    "2022": 7.8,
+    "2023": 9.0,
+    "2024": 10.1
+   },
+   "source": "Case pack (Forza Fitness brief, fictional reported accounts)",
+   "date": "2026-10-23",
+   "link": "forza_brief.md, case pack table",
+   "grade": "B2"
+  },
+  {
+   "id": "mem_h",
+   "name": "Average members (reported, thousand)",
+   "unit": "k members",
+   "role": "driver",
+   "values": {
+    "2019": 98,
+    "2020": 61,
+    "2021": 72,
+    "2022": 101,
+    "2023": 112,
+    "2024": 120
+   },
+   "source": "Case pack (Forza Fitness brief, fictional reported accounts)",
+   "date": "2026-10-23",
+   "link": "forza_brief.md, case pack table",
+   "grade": "B2",
+   "leaf": "members"
+  },
+  {
+   "id": "fee_h",
+   "name": "Average monthly fee, net of VAT (reported)",
+   "unit": "EUR/month",
+   "role": "driver",
+   "values": {
+    "2019": 39,
+    "2020": 39,
+    "2021": 40,
+    "2022": 42,
+    "2023": 44,
+    "2024": 45
+   },
+   "source": "Case pack (Forza Fitness brief, fictional reported accounts)",
+   "date": "2026-10-23",
+   "link": "forza_brief.md, case pack table",
+   "grade": "B2",
+   "leaf": "fee"
+  },
+  {
+   "id": "clubs_h",
+   "name": "Clubs at year end (reported)",
+   "unit": "clubs",
+   "role": "other",
+   "values": {
+    "2019": 38,
+    "2020": 38,
+    "2021": 40,
+    "2022": 42,
+    "2023": 44,
+    "2024": 46
+   },
+   "source": "Case pack (Forza Fitness brief, fictional reported accounts)",
+   "date": "2026-10-23",
+   "link": "forza_brief.md, case pack table",
+   "grade": "B2"
+  },
+  {
+   "id": "mpc_h",
+   "name": "Members per club (reported, derived)",
+   "unit": "k members/club",
+   "op": "div",
+   "args": [
+    "mem_h",
+    "clubs_h"
+   ]
+  },
+  {
+   "id": "churn_h",
+   "name": "Monthly churn, average (reported)",
+   "unit": "%",
+   "role": "other",
+   "values": {
+    "2019": 0.041,
+    "2020": 0.068,
+    "2021": 0.052,
+    "2022": 0.044,
+    "2023": 0.04,
+    "2024": 0.039
+   },
+   "source": "Case pack (Forza Fitness brief, fictional reported accounts)",
+   "date": "2026-10-23",
+   "link": "forza_brief.md, case pack table",
+   "grade": "B2"
+  },
+  {
+   "id": "rent_h",
+   "name": "Rent (reported)",
+   "unit": "EURm",
+   "role": "cost",
+   "values": {
+    "2019": 12.1,
+    "2020": 12.3,
+    "2021": 12.8,
+    "2022": 13.5,
+    "2023": 14.2,
+    "2024": 15.0
+   },
+   "source": "Case pack (Forza Fitness brief, fictional reported accounts)",
+   "date": "2026-10-23",
+   "link": "forza_brief.md, case pack table",
+   "grade": "B2"
+  },
+  {
+   "id": "staff_h",
+   "name": "Staff cost (reported)",
+   "unit": "EURm",
+   "role": "cost",
+   "values": {
+    "2019": 15.8,
+    "2020": 12.9,
+    "2021": 14.1,
+    "2022": 17.2,
+    "2023": 19.3,
+    "2024": 20.6
+   },
+   "source": "Case pack (Forza Fitness brief, fictional reported accounts)",
+   "date": "2026-10-23",
+   "link": "forza_brief.md, case pack table",
+   "grade": "B2"
+  },
+  {
+   "id": "energy_h",
+   "name": "Energy cost (reported)",
+   "unit": "EURm",
+   "role": "cost",
+   "values": {
+    "2019": 3.1,
+    "2020": 2.6,
+    "2021": 3.4,
+    "2022": 6.9,
+    "2023": 5.8,
+    "2024": 5.2
+   },
+   "source": "Case pack (Forza Fitness brief, fictional reported accounts)",
+   "date": "2026-10-23",
+   "link": "forza_brief.md, case pack table",
+   "grade": "B2"
+  },
+  {
+   "id": "ebitda_h",
+   "name": "EBITDA (reported)",
+   "unit": "EURm",
+   "role": "ebitda",
+   "values": {
+    "2019": 11.2,
+    "2020": 1.9,
+    "2021": 5.6,
+    "2022": 12.4,
+    "2023": 15.0,
+    "2024": 17.1
+   },
+   "source": "Case pack (Forza Fitness brief, fictional reported accounts)",
+   "date": "2026-10-23",
+   "link": "forza_brief.md, case pack table",
+   "grade": "B2"
+  },
+  {
+   "id": "np_h",
+   "name": "Net profit (reported)",
+   "unit": "EURm",
+   "role": "net_profit",
+   "values": {
+    "2019": 3.0,
+    "2020": -4.8,
+    "2021": -1.6,
+    "2022": 3.5,
+    "2023": 5.1,
+    "2024": 6.2
+   },
+   "source": "Case pack (Forza Fitness brief, fictional reported accounts)",
+   "date": "2026-10-23",
+   "link": "forza_brief.md, case pack table",
+   "grade": "B2"
+  }
+ ],
+ "inputs": [
+  {
+   "id": "mem0",
+   "name": "Average members, base year",
+   "unit": "k members",
+   "type": "actual",
+   "date": "2026-10-23",
+   "history": {
+    "series": "mem_h",
+    "stat": "last"
+   }
+  },
+  {
+   "id": "mem_g",
+   "name": "Do-nothing growth in members (existing 46-club estate)",
+   "unit": "%",
+   "type": "assumption",
+   "source": "Market-growth outlook for a mature estate: members per club 2.58k (2019) vs 2.61k (2024) = flat like-for-like; European memberships +5.8% in 2025 (Deloitte/EuropeActive EHFMR 2026, via Athletech News) used as the high end less new-club openings",
+   "date": "2026-10-23",
+   "link": "https://athletechnews.com/european-fitness-market-2025-more-members-more-revenue-room-to-grow-report-finds/",
+   "grade": "C3",
+   "base": 0.01,
+   "low": 0.0,
+   "high": 0.03,
+   "history_note": "History (CAGR 4.1%, median YoY 10.9% 2019-24) mixes the COVID rebound (2021-22) and 8 new clubs (+21% estate); the do-nothing case keeps the 46 existing clubs, whose members per club are already at the 2.6k mature level, so growth is market-like (~1%).",
+   "fetch": {
+    "source": "Deloitte/EuropeActive EHFMR (press)",
+    "url": "https://athletechnews.com/european-fitness-market-2025-more-members-more-revenue-room-to-grow-report-finds/",
+    "status": "done"
+   },
+   "request": {
+    "database": "Statista (EuropeActive/Deloitte European Health & Fitness Market Report 2025)",
+    "table": "Italy country page: members, penetration (% of population 15+), clubs, average fee",
+    "filters": "Italy; by macro-region if available",
+    "years": "2019-2025",
+    "export_as": "statista_ehfmr_italy_members_2019_2025.xlsx"
+   }
+  },
+  {
+   "id": "fee0",
+   "name": "Average monthly fee, base year",
+   "unit": "EUR/month",
+   "type": "actual",
+   "date": "2026-10-23",
+   "history": {
+    "series": "fee_h",
+    "stat": "last"
+   }
+  },
+  {
+   "id": "fee_g",
+   "name": "Do-nothing growth in the monthly fee",
+   "unit": "%",
+   "type": "assumption",
+   "date": "2026-10-23",
+   "history": {
+    "series": "fee_h",
+    "stat": "cagr"
+   }
+  },
+  {
+   "id": "anc0",
+   "name": "Ancillary spend per member per year, base year",
+   "unit": "EUR/yr",
+   "type": "actual",
+   "source": "Derived: ancillary revenue 10.1 EURm / 120k average members (case pack 2024)",
+   "date": "2026-10-23",
+   "link": "forza_brief.md",
+   "grade": "B2",
+   "base": 84.17
+  },
+  {
+   "id": "anc_g",
+   "name": "Do-nothing growth in ancillary spend per member (CPI)",
+   "unit": "%",
+   "type": "assumption",
+   "source": "IMF WEO Oct 2026 via l'Adige (13 Oct 2026): Italy CPI 3.3% (2026), 2.8% (2027), converging to ~2% by 2028; average over 2025-29 ~2.5%",
+   "date": "2026-10-23",
+   "link": "https://www.ladige.it/attualita/fmi-nel-2026-in-italia-inflazione-al-3-3-area-euro-al-3-1-usa-al-3-6-k67fo9fs",
+   "grade": "A2",
+   "base": 0.025,
+   "low": 0.02,
+   "high": 0.033,
+   "history_note": "Ancillary per member (derived) grew 3.1%/yr 2019-24 (72.4 -> 84.2 EUR); the outlook uses CPI, close to that record.",
+   "fetch": {
+    "source": "IMF WEO",
+    "url": "https://www.ladige.it/attualita/fmi-nel-2026-in-italia-inflazione-al-3-3-area-euro-al-3-1-usa-al-3-6-k67fo9fs",
+    "status": "done"
+   }
+  },
+  {
+   "id": "fit_pen",
+   "name": "Gym penetration (members / population)",
+   "unit": "%",
+   "type": "assumption",
+   "source": "PROVISIONAL: European penetration 8.9% in 2024 (Deloitte/EuropeActive EHFMR 2025, via Athletech News); Italy figure not found openly",
+   "date": "2026-10-23",
+   "link": "https://athletechnews.com/european-fitness-market-2025-more-members-more-revenue-room-to-grow-report-finds/",
+   "grade": "C3",
+   "base": 0.089,
+   "low": 0.07,
+   "high": 0.1,
+   "request": {
+    "database": "Statista (EuropeActive/Deloitte European Health & Fitness Market Report 2025)",
+    "table": "Italy country page: members, penetration (% of population 15+), clubs, average fee",
+    "filters": "Italy; by macro-region if available",
+    "years": "2019-2025",
+    "export_as": "statista_ehfmr_italy_members_2019_2025.xlsx"
+   }
+  },
+  {
+   "id": "north_mkt",
+   "name": "Ceiling: gym members in the four Northern regions",
+   "unit": "k members",
+   "type": "assumption",
+   "source": "Arithmetic on two register rows (typed only because defence_pack.py cannot read a derived ceiling): population 23,655k (ISTAT) x penetration 8.9% (7.0-10.0%, EHFMR 2025 Europe)",
+   "date": "2026-10-23",
+   "link": "https://athletechnews.com/european-fitness-market-2025-more-members-more-revenue-room-to-grow-report-finds/",
+   "grade": "C3",
+   "base": 2105,
+   "low": 1656,
+   "high": 2366
+  },
+  {
+   "id": "mkt_g",
+   "name": "Growth of gym membership market",
+   "unit": "%",
+   "type": "assumption",
+   "source": "Deloitte/EuropeActive EHFMR 2026: European memberships +5.8% in 2025 (high); low 1%; base 3%",
+   "date": "2026-10-23",
+   "link": "https://athletechnews.com/european-fitness-market-2025-more-members-more-revenue-room-to-grow-report-finds/",
+   "grade": "C3",
+   "base": 0.03,
+   "low": 0.01,
+   "high": 0.058
+  },
+  {
+   "id": "to_m12",
+   "name": "Conversion: k members x EUR/month x 12 months -> EURm/yr",
+   "unit": "x",
+   "type": "conversion",
+   "source": "Arithmetic: 1,000 x 12 / 1,000,000",
+   "date": "2026-10-23",
+   "link": "-",
+   "grade": "A1",
+   "base": 0.012
+  },
+  {
+   "id": "to_m1",
+   "name": "Conversion: k members x EUR/yr -> EURm",
+   "unit": "x",
+   "type": "conversion",
+   "source": "Arithmetic: 1,000 / 1,000,000",
+   "date": "2026-10-23",
+   "link": "-",
+   "grade": "A1",
+   "base": 0.001
+  },
+  {
+   "id": "one",
+   "name": "Constant one (for the churn conversion)",
+   "unit": "x",
+   "type": "constant",
+   "source": "Arithmetic",
+   "date": "2026-10-23",
+   "link": "-",
+   "grade": "A1",
+   "base": 1.0
+  },
+  {
+   "id": "margin",
+   "name": "Contribution margin on incremental revenue (existing clubs)",
+   "unit": "%",
+   "type": "assumption",
+   "source": "Derived from case pack 2024: 1 - other (non rent/staff/energy) costs 17.0 / revenue 74.9 = 77.3%; rent, staff, energy treated as fixed per club. Low end allows part of the other costs to be variable.",
+   "date": "2026-10-23",
+   "link": "forza_brief.md",
+   "grade": "C3",
+   "base": 0.773,
+   "low": 0.65,
+   "high": 0.85
+  },
+  {
+   "id": "dig_launch",
+   "name": "App & online classes: launch year",
+   "unit": "year",
+   "type": "plan",
+   "source": "DEFAULT, unconfirmed (team unavailable; step-1 question sent); as-of Oct 2026, so 2027 earliest",
+   "date": "2026-10-23",
+   "grade": "D3",
+   "base": 2027
+  },
+  {
+   "id": "dp_launch",
+   "name": "Dynamic pricing: launch year",
+   "unit": "year",
+   "type": "plan",
+   "source": "DEFAULT, unconfirmed (team unavailable; step-1 question sent)",
+   "date": "2026-10-23",
+   "grade": "D3",
+   "base": 2027
+  },
+  {
+   "id": "ch_launch",
+   "name": "Reduce churn: launch year",
+   "unit": "year",
+   "type": "plan",
+   "source": "DEFAULT, unconfirmed (team unavailable; step-1 question sent)",
+   "date": "2026-10-23",
+   "grade": "D3",
+   "base": 2027
+  },
+  {
+   "id": "corp_launch",
+   "name": "Corporate wellness: launch year",
+   "unit": "year",
+   "type": "plan",
+   "source": "DEFAULT, unconfirmed (team unavailable; step-1 question sent)",
+   "date": "2026-10-23",
+   "grade": "D3",
+   "base": 2027
+  },
+  {
+   "id": "south_launch",
+   "name": "New clubs in the South: first opening year",
+   "unit": "year",
+   "type": "plan",
+   "source": "DEFAULT, unconfirmed (team unavailable; step-1 question sent); site search + fit-out ~12-18 months",
+   "date": "2026-10-23",
+   "grade": "D3",
+   "base": 2028
+  },
+  {
+   "id": "bud_launch",
+   "name": "Budget sub-brand: first opening year",
+   "unit": "year",
+   "type": "plan",
+   "source": "DEFAULT, unconfirmed (team unavailable; step-1 question sent)",
+   "date": "2026-10-23",
+   "grade": "D3",
+   "base": 2027
+  },
+  {
+   "id": "dig_attach",
+   "name": "Paying digital add-on subscribers per club member",
+   "unit": "%",
+   "type": "uplift",
+   "source": "PROVISIONAL: no audited attach rates found openly. Hybrid access is included in ~41% of memberships (smarthealthclubs.com, unsourced survey; access not paid); vendor claims of +20-40% ARPU from hybrid layers (hypothetical). Base below median.",
+   "date": "2026-10-23",
+   "link": "https://smarthealthclubs.com/blog/100-gym-membership-retention-statistics/",
+   "grade": "D4",
+   "base": 0.08,
+   "low": 0.03,
+   "high": 0.15,
+   "bench_low": 0.05,
+   "bench_median": 0.1,
+   "bench_high": 0.2,
+   "bench_source": "reference class n = 3 (weak): paid digital uptake proxies - Peloton app vs connected subs ~20% (FY24 10-K), vendor hybrid ARPU claims 20-40% x ~25-50% uptake ~10%, operator surveys of paid add-ons ~5%; graded D4, n < 5",
+   "request": {
+    "database": "Euromonitor Passport / Factiva",
+    "table": "Passport: Digital fitness subscriptions Italy; Factiva: gym chain digital subscriber counts (Virgin Active, Technogym, McFit/Cyberobics)",
+    "filters": "Italy + Europe; 2020-2026",
+    "years": "2020-2026",
+    "export_as": "factiva_gym_digital_subscribers_2020_2026.xlsx"
+   }
+  },
+  {
+   "id": "dig_fee",
+   "name": "Digital add-on monthly fee",
+   "unit": "EUR/month",
+   "type": "assumption",
+   "source": "Les Mills+ Base plan EUR 7.49/month, Premium EUR 14.95 (trusted.de price comparison, 2026, Germany)",
+   "date": "2026-10-23",
+   "link": "https://trusted.de/les-mills-kosten",
+   "grade": "C2",
+   "base": 7.49,
+   "low": 4.99,
+   "high": 14.95
+  },
+  {
+   "id": "dig_margin",
+   "name": "Contribution margin on digital add-on revenue",
+   "unit": "%",
+   "type": "assumption",
+   "source": "App-store/payment fees 15-30% (Apple/Google small-business rate 15%) plus content licensing; team estimate from analogues",
+   "date": "2026-10-23",
+   "link": "-",
+   "grade": "D3",
+   "base": 0.7,
+   "low": 0.55,
+   "high": 0.85
+  },
+  {
+   "id": "dig_capex",
+   "name": "App & online classes: build capex",
+   "unit": "EURm",
+   "type": "cost",
+   "source": "Fitness app with video streaming USD 180-350k+ (Attract Group); platform-scale USD 250-500k (Tactionsoft); vendor blogs",
+   "date": "2026-10-23",
+   "link": "https://attractgroup.com/blog/how-much-does-it-cost-to-make-a-fitness-app-everything-you-need-to-know/",
+   "grade": "D3",
+   "base": 0.35,
+   "low": 0.17,
+   "high": 0.5
+  },
+  {
+   "id": "dig_opex",
+   "name": "App & online classes: running cost (maintenance, content, hosting)",
+   "unit": "EURm/yr",
+   "type": "cost",
+   "source": "Maintenance 15-25% of build per year (Attract Group) + class content production and CDN; team estimate",
+   "date": "2026-10-23",
+   "link": "https://attractgroup.com/blog/how-much-does-it-cost-to-make-a-fitness-app-everything-you-need-to-know/",
+   "grade": "D4",
+   "base": 0.4,
+   "low": 0.25,
+   "high": 0.7
+  },
+  {
+   "id": "dig_ytp",
+   "name": "App & online classes: years to full uptake",
+   "unit": "years",
+   "type": "assumption",
+   "source": "Team estimate (linear adoption)",
+   "date": "2026-10-23",
+   "grade": "D3",
+   "base": 3,
+   "low": 2,
+   "high": 4
+  },
+  {
+   "id": "dig_life",
+   "name": "App build depreciation life",
+   "unit": "years",
+   "type": "constant",
+   "source": "Software capitalisation convention (5 years)",
+   "date": "2026-10-23",
+   "link": "-",
+   "grade": "C3",
+   "base": 5
+  },
+  {
+   "id": "dig_decay",
+   "name": "App & online classes: annual erosion of uptake",
+   "unit": "%",
+   "type": "assumption",
+   "source": "Novelty wear-off of digital subscriptions; team estimate",
+   "date": "2026-10-23",
+   "grade": "D4",
+   "base": 0.05,
+   "low": 0.0,
+   "high": 0.1
+  },
+  {
+   "id": "dp_up",
+   "name": "Dynamic pricing: peak uplift in average monthly fee (net of volume loss)",
+   "unit": "%",
+   "type": "uplift",
+   "source": "Reference class of revenue gains from dynamic vs static pricing (perishable-capacity services); a gym fee reprices only joiners and off-peak tiers, so the base is set near p25-median rather than the hotel/ticket median",
+   "date": "2026-10-23",
+   "link": "https://www.researchgate.net/publication/276422691_Dynamic_pricing_with_updated_demand_for_the_sports_and_entertainment_ticket_industry",
+   "grade": "C3",
+   "base": 0.04,
+   "low": 0.01,
+   "high": 0.07,
+   "bench_low": 0.0415,
+   "bench_median": 0.07,
+   "bench_high": 0.1,
+   "bench_source": "reference class n = 7: ticket simulation without learning 3.3% and 4.3%, with learning 8.15% (Phumchusri & Swann 2014); hotel RM vs static 3-5% (~4%, Numdam RAIRO overview); SF Giants dynamic ticketing +7% (2010); golf time-based pricing +12%; spa slot pricing +18% (vendor). p25 4.15%, median 7%, p75 10%",
+   "request": {
+    "database": "Scopus",
+    "table": "TITLE-ABS-KEY(\"dynamic pricing\" AND (fitness OR gym OR subscription) AND revenue)",
+    "filters": "articles 2010-2026",
+    "years": "2010-2026",
+    "export_as": "scopus_dynamic_pricing_subscription.csv"
+   }
+  },
+  {
+   "id": "dp_ytp",
+   "name": "Dynamic pricing: years to full effect",
+   "unit": "years",
+   "type": "assumption",
+   "source": "Fee reprices as members turn over: monthly churn 3.9% -> ~47% of members renew/join each year (case pack)",
+   "date": "2026-10-23",
+   "grade": "C3",
+   "base": 2,
+   "low": 1,
+   "high": 3
+  },
+  {
+   "id": "dp_capex",
+   "name": "Dynamic pricing: pricing engine and CRM integration capex",
+   "unit": "EURm",
+   "type": "cost",
+   "source": "Team estimate from gym-software price points (Glofox enterprise USD 500-600+/month per site, vibefam.com) plus integration",
+   "date": "2026-10-23",
+   "link": "https://vibefam.com/glofox-pricing-2026/",
+   "grade": "D3",
+   "base": 0.2,
+   "low": 0.1,
+   "high": 0.4
+  },
+  {
+   "id": "dp_opex",
+   "name": "Dynamic pricing: running cost (licence, analyst)",
+   "unit": "EURm/yr",
+   "type": "cost",
+   "source": "1 pricing analyst + licence; team estimate",
+   "date": "2026-10-23",
+   "grade": "D3",
+   "base": 0.15,
+   "low": 0.08,
+   "high": 0.25
+  },
+  {
+   "id": "ch_cut",
+   "name": "Reduce churn: relative cut in monthly churn at full effect",
+   "unit": "%",
+   "type": "uplift",
+   "source": "Reference class mostly vendor case studies (biased upward) plus one RCT with no renewal effect; base set between p25 and median. Forza's own churn fell 4.4% -> 3.9% (-11%) in 2022-24",
+   "date": "2026-10-23",
+   "link": "https://www.gravysolutions.io/post/11-sure-fire-ways-to-reduce-gym-membership-churn",
+   "grade": "D4",
+   "base": 0.15,
+   "low": 0.05,
+   "high": 0.28,
+   "bench_low": 0.0875,
+   "bench_median": 0.28,
+   "bench_high": 0.36,
+   "bench_source": "reference class n = 6 relative churn cuts: weekly e-mail reminders RCT, no renewal effect 0% (Tinbergen, limited attention at the gym); payment-failure workflow -12% of involuntary churn (~25% of total) ~3%; group exercisers 26% less likely to cancel (Worcester, correlational); 3-site chain -12 pp on ~40% annual (~30%); onboarding/outreach vendor case 28% -> 17% annual (-38%); BJJ gym 8% -> 4% monthly (-50%). p25 8.75%, median 28%, p75 36%",
+   "request": {
+    "database": "Factiva / ABI-INFORM",
+    "table": "(gym OR \"health club\") AND (churn OR attrition OR retention) AND (reduced OR fell) AND %",
+    "filters": "operators in Europe; 2015-2026",
+    "years": "2015-2026",
+    "export_as": "factiva_gym_churn_cases_2015_2026.xlsx"
+   }
+  },
+  {
+   "id": "ch_ytp",
+   "name": "Reduce churn: years to full effect",
+   "unit": "years",
+   "type": "assumption",
+   "source": "Member stock adjusts to lower churn over ~1/churn = 26 months plus programme rollout (case pack churn 3.9%)",
+   "date": "2026-10-23",
+   "grade": "C3",
+   "base": 3,
+   "low": 2,
+   "high": 4
+  },
+  {
+   "id": "ch_decay",
+   "name": "Reduce churn: annual erosion of the effect",
+   "unit": "%",
+   "type": "assumption",
+   "source": "Programme fatigue; team estimate",
+   "date": "2026-10-23",
+   "grade": "D4",
+   "base": 0.03,
+   "low": 0.0,
+   "high": 0.08
+  },
+  {
+   "id": "ch_opex",
+   "name": "Reduce churn: running cost (CRM, onboarding coaches, retention team)",
+   "unit": "EURm/yr",
+   "type": "cost",
+   "source": "Team estimate: 1 CRM lead + ~0.2 FTE onboarding coach per club x 46 clubs at Italian fitness wages",
+   "date": "2026-10-23",
+   "grade": "D4",
+   "base": 0.6,
+   "low": 0.4,
+   "high": 1.0
+  },
+  {
+   "id": "corp_emp",
+   "name": "Corporate wellness: employees covered by contracts at full rollout",
+   "unit": "k employees",
+   "type": "plan",
+   "source": "DEFAULT, unconfirmed (team unavailable; step-1 question sent): ~40 employers x 1,000 staff in Milan/Turin/Bologna/Verona catchments",
+   "date": "2026-10-23",
+   "grade": "D3",
+   "base": 40,
+   "low": 25,
+   "high": 60
+  },
+  {
+   "id": "corp_takeup",
+   "name": "Corporate wellness: take-up among covered employees",
+   "unit": "%",
+   "type": "uplift",
+   "source": "Single-operator corporate deals sit nearer traditional gym reimbursements than multi-gym platforms; base near p25",
+   "date": "2026-10-23",
+   "link": "https://wellhub.com/en-us/blog/wellness-and-benefits-programs/corporate-gym-memberships/",
+   "grade": "D4",
+   "base": 0.12,
+   "low": 0.06,
+   "high": 0.25,
+   "bench_low": 0.1075,
+   "bench_median": 0.23,
+   "bench_high": 0.3425,
+   "bench_source": "reference class n = 4 (vendor data): traditional gym reimbursement take-up implied by Wellhub's '3-5x' claim on 35% (~7% and ~12%); Wellhub clients: Big-4 firm 35%, software company 34%. Graded D4, n < 5",
+   "request": {
+    "database": "Factiva / Statista",
+    "table": "corporate wellness gym programme participation rate Italy/Europe (Wellhub, EGYM Wellpass, Edenred)",
+    "filters": "Europe; 2019-2026",
+    "years": "2019-2026",
+    "export_as": "factiva_corporate_wellness_takeup.xlsx"
+   }
+  },
+  {
+   "id": "corp_disc",
+   "name": "Corporate rate as share of the list fee",
+   "unit": "%",
+   "type": "assumption",
+   "source": "Typical 10-30% corporate discount; team estimate",
+   "date": "2026-10-23",
+   "grade": "D3",
+   "base": 0.8,
+   "low": 0.7,
+   "high": 0.9
+  },
+  {
+   "id": "corp_ytp",
+   "name": "Corporate wellness: years to full rollout",
+   "unit": "years",
+   "type": "assumption",
+   "source": "Sales cycle of B2B contracts; team estimate",
+   "date": "2026-10-23",
+   "grade": "D3",
+   "base": 3,
+   "low": 2,
+   "high": 4
+  },
+  {
+   "id": "corp_opex",
+   "name": "Corporate wellness: B2B sales team and account management",
+   "unit": "EURm/yr",
+   "type": "cost",
+   "source": "3 B2B sales FTE + marketing; team estimate",
+   "date": "2026-10-23",
+   "grade": "D4",
+   "base": 0.3,
+   "low": 0.2,
+   "high": 0.5
+  },
+  {
+   "id": "south_clubs",
+   "name": "New clubs in the South: number of clubs",
+   "unit": "clubs",
+   "type": "plan",
+   "source": "DEFAULT, unconfirmed (team unavailable; step-1 question sent): 2 per year 2028-2030, Naples/Bari/Palermo/Catania/Salerno",
+   "date": "2026-10-23",
+   "grade": "D3",
+   "base": 6,
+   "low": 4,
+   "high": 10
+  },
+  {
+   "id": "club_mem",
+   "name": "Members per mature Forza club",
+   "unit": "k members",
+   "type": "actual",
+   "source": "Case pack: a mature club has about 2,600 members",
+   "date": "2026-10-23",
+   "link": "forza_brief.md",
+   "grade": "C3",
+   "base": 2.6
+  },
+  {
+   "id": "south_px",
+   "name": "Southern fee as share of the Northern fee",
+   "unit": "%",
+   "type": "assumption",
+   "source": "Federconsumatori 2022 survey (via TeamSystem): average annual gym subscription EUR 696 South vs EUR 890 North = 0.78",
+   "date": "2026-10-23",
+   "link": "https://www.teamsystem.com/magazine/sport-e-wellness/abbonamento-palestra/",
+   "grade": "C3",
+   "base": 0.78,
+   "low": 0.72,
+   "high": 0.85,
+   "fetch": {
+    "source": "Federconsumatori via TeamSystem",
+    "url": "https://www.teamsystem.com/magazine/sport-e-wellness/abbonamento-palestra/",
+    "status": "done"
+   }
+  },
+  {
+   "id": "south_pop",
+   "name": "Population of Campania, Puglia and Sicilia",
+   "unit": "k people",
+   "type": "actual",
+   "source": "ISTAT estimate at 1 Jan 2026 via Tuttitalia: Campania 5,569k + Puglia 3,865k + Sicilia 4,775k",
+   "date": "2026-10-23",
+   "link": "https://www.tuttitalia.it/regioni/popolazione/",
+   "grade": "A1",
+   "base": 14209
+  },
+  {
+   "id": "club_capex",
+   "name": "Capex per new Forza club",
+   "unit": "EURm/club",
+   "type": "cost",
+   "source": "Case pack: new club capex about EUR 2.0m each",
+   "date": "2026-10-23",
+   "link": "forza_brief.md",
+   "grade": "C3",
+   "base": 2.0,
+   "low": 1.8,
+   "high": 2.4
+  },
+  {
+   "id": "club_fixed",
+   "name": "Fixed cost per Forza club (rent + staff + energy)",
+   "unit": "EURm/club/yr",
+   "type": "cost",
+   "source": "Derived from case pack 2024: (15.0 + 20.6 + 5.2) / 46 clubs",
+   "date": "2026-10-23",
+   "link": "forza_brief.md",
+   "grade": "C3",
+   "base": 0.887,
+   "low": 0.8,
+   "high": 0.95
+  },
+  {
+   "id": "south_cost",
+   "name": "Southern fixed-cost index vs North",
+   "unit": "%",
+   "type": "assumption",
+   "source": "Weighted: staff 50% x 0.85, rent 37% x 0.70, energy 13% x 1.0; wage floor = CGIA 2023 daily pay South 77 vs North 104 EUR (0.74)",
+   "date": "2026-10-23",
+   "link": "https://www.quotidiano.net/economia/stacanovisti-nord-italia-9d3608f0",
+   "grade": "D3",
+   "base": 0.82,
+   "low": 0.74,
+   "high": 0.95
+  },
+  {
+   "id": "club_ytp",
+   "name": "New clubs: years to full membership (phased opening + maturity)",
+   "unit": "years",
+   "type": "assumption",
+   "source": "3 years of openings + ~2-year maturity (Basic-Fit defines maturity after 2 years; annual report)",
+   "date": "2026-10-23",
+   "link": "https://annualreport.basic-fit.com/2025/mbr/business-and-financial-review",
+   "grade": "C3",
+   "base": 4,
+   "low": 3,
+   "high": 5
+  },
+  {
+   "id": "club_life",
+   "name": "Club fit-out depreciation life",
+   "unit": "years",
+   "type": "constant",
+   "source": "Leasehold fit-out life; modelling convention",
+   "date": "2026-10-23",
+   "link": "-",
+   "grade": "C3",
+   "base": 10
+  },
+  {
+   "id": "build_years",
+   "name": "Capex phasing: years of openings",
+   "unit": "years",
+   "type": "plan",
+   "source": "DEFAULT, unconfirmed (team unavailable; step-1 question sent)",
+   "date": "2026-10-23",
+   "grade": "D3",
+   "base": 3
+  },
+  {
+   "id": "bud_clubs",
+   "name": "Budget sub-brand: number of clubs",
+   "unit": "clubs",
+   "type": "plan",
+   "source": "DEFAULT, unconfirmed (team unavailable; step-1 question sent): 2 per year 2027-2029 in Northern cities",
+   "date": "2026-10-23",
+   "grade": "D3",
+   "base": 6,
+   "low": 4,
+   "high": 10
+  },
+  {
+   "id": "bud_mem",
+   "name": "Members per budget club",
+   "unit": "k members",
+   "type": "assumption",
+   "source": "Basic-Fit average memberships per club 2,701 (2024), 2,902 (2025); annual report 2025",
+   "date": "2026-10-23",
+   "link": "https://annualreport.basic-fit.com/2025/mbr/business-and-financial-review",
+   "grade": "B2",
+   "base": 2.701,
+   "low": 2.2,
+   "high": 2.902,
+   "fetch": {
+    "source": "Basic-Fit annual report 2025",
+    "url": "https://annualreport.basic-fit.com/2025/mbr/business-and-financial-review",
+    "status": "done"
+   }
+  },
+  {
+   "id": "bud_fee",
+   "name": "Budget sub-brand monthly yield per member",
+   "unit": "EUR/month",
+   "type": "assumption",
+   "source": "Basic-Fit average yield per membership EUR 24.24 (2024), 24.91 (2025); low = Italian low-cost entry price ~20 EUR",
+   "date": "2026-10-23",
+   "link": "https://annualreport.basic-fit.com/2025/mbr/business-and-financial-review",
+   "grade": "B2",
+   "base": 24.24,
+   "low": 19.99,
+   "high": 24.91
+  },
+  {
+   "id": "bud_capex",
+   "name": "Capex per budget club",
+   "unit": "EURm/club",
+   "type": "cost",
+   "source": "Basic-Fit initial capex per new club EUR 1.30m (2024), 1.33m (2025)",
+   "date": "2026-10-23",
+   "link": "https://annualreport.basic-fit.com/2025/mbr/business-and-financial-review",
+   "grade": "B2",
+   "base": 1.3,
+   "low": 1.2,
+   "high": 1.5
+  },
+  {
+   "id": "bud_fixed",
+   "name": "Fixed cost per budget club",
+   "unit": "EURm/club/yr",
+   "type": "cost",
+   "source": "Derived: Basic-Fit mature club revenue 2.701k x 24.24 x 12 = 0.786m x Forza contribution margin 0.773 - mature club EBITDA 0.399m (2024)",
+   "date": "2026-10-23",
+   "link": "https://annualreport.basic-fit.com/2025/mbr/business-and-financial-review",
+   "grade": "C3",
+   "base": 0.21,
+   "low": 0.18,
+   "high": 0.28
+  },
+  {
+   "id": "tax",
+   "name": "Corporate tax rate (IRES + IRAP)",
+   "unit": "%",
+   "type": "assumption",
+   "source": "PwC Worldwide Tax Summaries (reviewed 13 Jul 2026): IRES 24% + IRAP 3.9% (IRAP base differs, so low = IRES only)",
+   "date": "2026-10-23",
+   "link": "https://taxsummaries.pwc.com/italy/corporate/taxes-on-corporate-income",
+   "grade": "A1",
+   "base": 0.279,
+   "low": 0.24,
+   "high": 0.279
+  },
+  {
+   "id": "rf",
+   "name": "Risk-free rate (EUR, 10y Bund)",
+   "unit": "%",
+   "type": "assumption",
+   "source": "Trading Economics: German 10y Bund 3.19% in late July 2026 (2.87% at start of 2026)",
+   "date": "2026-10-23",
+   "link": "https://tradingeconomics.com/germany/government-bond-yield/news/569148",
+   "grade": "B2",
+   "base": 0.032,
+   "low": 0.029,
+   "high": 0.035
+  },
+  {
+   "id": "crp",
+   "name": "Country risk premium Italy",
+   "unit": "%",
+   "type": "assumption",
+   "source": "Damodaran, Country risk premiums, Jan 2026: Italy (Baa2) CRP 2.46%",
+   "date": "2026-10-23",
+   "link": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/ctryprem.html",
+   "grade": "A2",
+   "base": 0.0246,
+   "low": 0.018,
+   "high": 0.03,
+   "fetch": {
+    "source": "Damodaran ctryprem",
+    "url": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/ctryprem.html",
+    "status": "done"
+   }
+  },
+  {
+   "id": "erp",
+   "name": "Mature-market equity risk premium",
+   "unit": "%",
+   "type": "assumption",
+   "source": "Damodaran, Jan 2026: Aaa ERP 4.23%",
+   "date": "2026-10-23",
+   "link": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/ctryprem.html",
+   "grade": "A2",
+   "base": 0.0423,
+   "low": 0.04,
+   "high": 0.05
+  },
+  {
+   "id": "beta",
+   "name": "Levered beta (Recreation)",
+   "unit": "x",
+   "type": "assumption",
+   "source": "Damodaran Betas by sector (global/US), Jan 2026: Recreation 1.02 at D/E 63% (49 firms)",
+   "date": "2026-10-23",
+   "link": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/Betas.html",
+   "grade": "B2",
+   "base": 1.02,
+   "low": 0.85,
+   "high": 1.2,
+   "fetch": {
+    "source": "Damodaran Betas",
+    "url": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/Betas.html",
+    "status": "done"
+   },
+   "request": {
+    "database": "Bloomberg",
+    "table": "BETA 2y weekly vs STOXX 600: Basic-Fit, The Gym Group, Technogym, PureGym bonds",
+    "filters": "adjusted beta",
+    "years": "2024-2026",
+    "export_as": "bloomberg_fitness_peer_betas_2026.xlsx"
+   }
+  },
+  {
+   "id": "kd",
+   "name": "Pre-tax cost of debt",
+   "unit": "%",
+   "type": "assumption",
+   "source": "Derived: rf 3.2% + Italy default spread 1.62% (Damodaran) + ~1.7% single-B/BB leisure spread",
+   "date": "2026-10-23",
+   "link": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/ctryprem.html",
+   "grade": "C3",
+   "base": 0.065,
+   "low": 0.055,
+   "high": 0.08
+  },
+  {
+   "id": "wd",
+   "name": "Debt weight D/V",
+   "unit": "%",
+   "type": "assumption",
+   "source": "Damodaran Recreation D/E 63% -> D/V 38.6%",
+   "date": "2026-10-23",
+   "link": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/Betas.html",
+   "grade": "B2",
+   "base": 0.386,
+   "low": 0.25,
+   "high": 0.45
+  }
+ ],
+ "derived": [
+  {
+   "id": "south_mkt",
+   "name": "Ceiling: gym members in Campania, Puglia, Sicilia",
+   "unit": "k members",
+   "op": "prod",
+   "args": [
+    "south_pop",
+    "fit_pen"
+   ]
+  },
+  {
+   "id": "ch_keep",
+   "name": "Share of churn that remains",
+   "unit": "%",
+   "op": "sub",
+   "args": [
+    "one",
+    "ch_cut"
+   ]
+  },
+  {
+   "id": "mem_up",
+   "name": "Members uplift from lower churn (steady state: cut / (1 - cut))",
+   "unit": "%",
+   "op": "div",
+   "args": [
+    "ch_cut",
+    "ch_keep"
+   ]
+  },
+  {
+   "id": "corp_fee",
+   "name": "Corporate monthly fee",
+   "unit": "EUR/month",
+   "op": "prod",
+   "args": [
+    "fee0",
+    "corp_disc"
+   ]
+  },
+  {
+   "id": "south_fee",
+   "name": "Southern monthly fee",
+   "unit": "EUR/month",
+   "op": "prod",
+   "args": [
+    "fee0",
+    "south_px"
+   ]
+  },
+  {
+   "id": "south_fixed",
+   "name": "Fixed cost per Southern club",
+   "unit": "EURm/club/yr",
+   "op": "prod",
+   "args": [
+    "club_fixed",
+    "south_cost"
+   ]
+  }
+ ],
+ "leaves": [
+  {
+   "id": "members",
+   "name": "Average members",
+   "unit": "k members",
+   "base": "mem0",
+   "growth": "mem_g",
+   "ceiling": "north_mkt",
+   "ceiling_growth": "mkt_g"
+  },
+  {
+   "id": "fee",
+   "name": "Average monthly fee",
+   "unit": "EUR/month",
+   "base": "fee0",
+   "growth": "fee_g"
+  },
+  {
+   "id": "anc",
+   "name": "Ancillary spend per member",
+   "unit": "EUR/yr",
+   "base": "anc0",
+   "growth": "anc_g"
+  }
+ ],
+ "streams": [
+  {
+   "id": "membership",
+   "name": "Membership revenue",
+   "leaves": [
+    "members",
+    "fee"
+   ],
+   "scale": "to_m12"
+  },
+  {
+   "id": "ancillary",
+   "name": "Ancillary revenue (PT, bar, retail)",
+   "leaves": [
+    "members",
+    "anc"
+   ],
+   "scale": "to_m1"
+  }
+ ],
+ "pillars": [
+  {
+   "id": "digital",
+   "name": "1. Digital",
+   "initiatives": [
+    {
+     "id": "d1",
+     "name": "App & online classes",
+     "model": "build",
+     "kind": "revenue",
+     "mechanism": "Launch Forza app with live/on-demand classes -> members (and lapsed members) buy a paid digital add-on -> new digital subscription revenue",
+     "volume": {
+      "name": "Paying digital subscribers",
+      "unit": "k subscribers",
+      "drivers": [
+       "mem0",
+       "dig_attach"
+      ],
+      "ceiling": "mem0",
+      "ceiling_name": "club members"
+     },
+     "price": {
+      "name": "Digital add-on fee",
+      "unit": "EUR/month",
+      "base": "dig_fee",
+      "growth": "anc_g"
+     },
+     "scale": [
+      "to_m12"
+     ],
+     "margin": "dig_margin",
+     "launch_year": "dig_launch",
+     "ramp": {
+      "type": "linear",
+      "years_to_peak": "dig_ytp"
+     },
+     "decay": "dig_decay",
+     "capex": "dig_capex",
+     "asset_life": "dig_life",
+     "opex": "dig_opex"
+    },
+    {
+     "id": "d2",
+     "name": "Dynamic pricing",
+     "mechanism": "Time-of-day / demand-based fees for joiners and off-peak tiers -> higher average yield per member -> monthly fee",
+     "leaf": "fee",
+     "uplift": "dp_up",
+     "launch_year": "dp_launch",
+     "ramp": {
+      "type": "linear",
+      "years_to_peak": "dp_ytp"
+     },
+     "capex": "dp_capex",
+     "opex": "dp_opex",
+     "asset_life": "dig_life"
+    }
+   ]
+  },
+  {
+   "id": "keep",
+   "name": "2. Keep members",
+   "initiatives": [
+    {
+     "id": "k1",
+     "name": "Reduce churn",
+     "mechanism": "Onboarding, early-warning outreach, payment-failure recovery -> lower monthly churn -> more average members (steady state cut/(1-cut))",
+     "leaf": "members",
+     "uplift": "mem_up",
+     "launch_year": "ch_launch",
+     "ramp": {
+      "type": "linear",
+      "years_to_peak": "ch_ytp"
+     },
+     "decay": "ch_decay",
+     "opex": "ch_opex"
+    },
+    {
+     "id": "k2",
+     "name": "Corporate wellness deals",
+     "model": "build",
+     "kind": "revenue",
+     "mechanism": "Sign employers in the catchments -> employees join at a corporate rate -> new corporate members",
+     "volume": {
+      "name": "Corporate members",
+      "unit": "k members",
+      "drivers": [
+       "corp_emp",
+       "corp_takeup"
+      ],
+      "ceiling": "corp_emp",
+      "ceiling_name": "employees covered"
+     },
+     "price": {
+      "name": "Corporate monthly fee",
+      "unit": "EUR/month",
+      "base": "corp_fee",
+      "growth": "fee_g"
+     },
+     "scale": [
+      "to_m12"
+     ],
+     "launch_year": "corp_launch",
+     "ramp": {
+      "type": "linear",
+      "years_to_peak": "corp_ytp"
+     },
+     "opex": "corp_opex"
+    }
+   ]
+  },
+  {
+   "id": "expand",
+   "name": "3. Expand",
+   "initiatives": [
+    {
+     "id": "e1",
+     "name": "New clubs in the South",
+     "model": "build",
+     "kind": "revenue",
+     "mechanism": "Open Forza mid-price clubs in Southern cities -> new members at Southern prices -> new club revenue",
+     "volume": {
+      "name": "Members in Southern clubs",
+      "unit": "k members",
+      "drivers": [
+       "south_clubs",
+       "club_mem"
+      ],
+      "ceiling": "south_mkt",
+      "ceiling_name": "gym members in the South"
+     },
+     "price": {
+      "name": "Southern monthly fee",
+      "unit": "EUR/month",
+      "base": "south_fee",
+      "growth": "fee_g"
+     },
+     "scale": [
+      "to_m12"
+     ],
+     "launch_year": "south_launch",
+     "ramp": {
+      "type": "linear",
+      "years_to_peak": "club_ytp"
+     },
+     "capex": [
+      "south_clubs",
+      "club_capex"
+     ],
+     "capex_years": "build_years",
+     "asset_life": "club_life",
+     "opex": [
+      "south_clubs",
+      "south_fixed"
+     ],
+     "opex_ramp": true
+    },
+    {
+     "id": "e2",
+     "name": "Budget sub-brand",
+     "model": "build",
+     "kind": "revenue",
+     "mechanism": "Open low-cost clubs under a new brand (Basic-Fit format) -> price-sensitive members not served today -> new budget revenue",
+     "volume": {
+      "name": "Members in budget clubs",
+      "unit": "k members",
+      "drivers": [
+       "bud_clubs",
+       "bud_mem"
+      ],
+      "ceiling": "north_mkt",
+      "ceiling_name": "gym members in the North"
+     },
+     "price": {
+      "name": "Budget monthly yield",
+      "unit": "EUR/month",
+      "base": "bud_fee",
+      "growth": "fee_g"
+     },
+     "scale": [
+      "to_m12"
+     ],
+     "launch_year": "bud_launch",
+     "ramp": {
+      "type": "linear",
+      "years_to_peak": "club_ytp"
+     },
+     "capex": [
+      "bud_clubs",
+      "bud_capex"
+     ],
+     "capex_years": "build_years",
+     "asset_life": "club_life",
+     "opex": [
+      "bud_clubs",
+      "bud_fixed"
+     ],
+     "opex_ramp": true
+    }
+   ]
+  }
+ ],
+ "split_rules": {},
+ "finance": {
+  "margin": "margin",
+  "tax": "tax",
+  "rf": "rf",
+  "beta": "beta",
+  "erp": "erp",
+  "crp": "crp",
+  "kd": "kd",
+  "debt_weight": "wd"
+ },
+ "sensitivity": {
+  "tornado_top": 10,
+  "steps": 5
+ },
+ "objectives": [
+  {
+   "id": "profit",
+   "name": "Profitability",
+   "kind": "profitability"
+  }
+ ]
+}

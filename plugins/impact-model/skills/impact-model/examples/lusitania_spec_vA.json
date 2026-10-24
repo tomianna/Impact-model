@@ -1,0 +1,1227 @@
+{
+ "meta": {
+  "company": "Lusitania Ceramica, S.A.",
+  "title": "Lusitania Ceramica - Go green / Grow abroad / Go premium impact model (version A)",
+  "currency": "EURm",
+  "objective": "profitability (default: NPV of incremental FCF, 2025-2029 + terminal value)",
+  "first_hist_year": 2021,
+  "base_year": 2024,
+  "horizon_years": 5,
+  "as_of": "2026-10-22",
+  "prepared_by": "Skill eval run (team unavailable: cards unconfirmed)",
+  "version": "A"
+ },
+ "actuals": [
+  {
+   "id": "rev",
+   "name": "Revenue (reported)",
+   "unit": "EURm",
+   "role": "revenue",
+   "values": {
+    "2021": 152.0,
+    "2022": 171.3,
+    "2023": 176.0,
+    "2024": 181.9
+   },
+   "source": "Case pack (Lusitania brief, fictional reported accounts)",
+   "date": "2026-10-22",
+   "grade": "C2",
+   "request": {
+    "database": "SABI",
+    "table": "Lusitania Ceramica SA > Contas (modelo normal) > Demonstracao de resultados",
+    "filters": "individual, EUR thousands",
+    "years": "2021-2024",
+    "export_as": "sabi_lusitania_pl_2021_2024.xlsx"
+   }
+  },
+  {
+   "id": "vol_hist",
+   "name": "Tiles sold",
+   "unit": "m m2",
+   "values": {
+    "2021": 16.1,
+    "2022": 16.6,
+    "2023": 16.5,
+    "2024": 17.0
+   },
+   "source": "Case pack (Lusitania brief, fictional reported accounts)",
+   "date": "2026-10-22",
+   "grade": "C2",
+   "role": "driver",
+   "leaf": "volume"
+  },
+  {
+   "id": "price_hist",
+   "name": "Average price",
+   "unit": "EUR/m2",
+   "values": {
+    "2021": 9.44,
+    "2022": 10.32,
+    "2023": 10.67,
+    "2024": 10.7
+   },
+   "source": "Case pack (Lusitania brief, fictional reported accounts)",
+   "date": "2026-10-22",
+   "grade": "C2",
+   "role": "driver",
+   "leaf": "price"
+  },
+  {
+   "id": "energy_hist",
+   "name": "Energy cost (electricity + gas)",
+   "unit": "EURm",
+   "values": {
+    "2021": 27.5,
+    "2022": 61.0,
+    "2023": 52.3,
+    "2024": 47.9
+   },
+   "source": "Case pack (Lusitania brief, fictional reported accounts)",
+   "date": "2026-10-22",
+   "grade": "C2",
+   "role": "cost"
+  },
+  {
+   "id": "ebitda_hist",
+   "name": "EBITDA",
+   "unit": "EURm",
+   "values": {
+    "2021": 24.3,
+    "2022": 13.7,
+    "2023": 22.9,
+    "2024": 25.5
+   },
+   "source": "Case pack (Lusitania brief, fictional reported accounts)",
+   "date": "2026-10-22",
+   "grade": "C2",
+   "role": "ebitda"
+  }
+ ],
+ "inputs": [
+  {
+   "id": "vol0",
+   "name": "Tiles sold, base year",
+   "unit": "m m2",
+   "type": "actual",
+   "date": "2026-10-22",
+   "link": "Case pack table",
+   "grade": "C2",
+   "history": {
+    "series": "vol_hist",
+    "stat": "last"
+   }
+  },
+  {
+   "id": "vol_g",
+   "name": "Baseline growth in tiles sold (do nothing)",
+   "unit": "%",
+   "type": "assumption",
+   "base": 0.01,
+   "source": "Case pack volume CAGR 2021-24 = 1.8%; Portugal tile consumption +3.6% 2025e, +2.4% 2026 (Confindustria Ceramica country report Portugal, Prometeia); 62% of sales exported to flatter EU markets -> base 1%",
+   "date": "2026-10-22",
+   "link": "https://confindustriaceramica.it/w/it/country-report-portugal",
+   "grade": "C3",
+   "low": 0.0,
+   "high": 0.02,
+   "history_note": "Not the 2021-24 volume CAGR (1.8%): the forward view uses the Portuguese tile-consumption outlook (+3.6% 2025e, +2.4% 2026) net of share loss; the history band is the cross-check"
+  },
+  {
+   "id": "cap",
+   "name": "Ceiling: plant capacity",
+   "unit": "m m2",
+   "type": "actual",
+   "base": 21.0,
+   "source": "Case pack (Lusitania brief, fictional reported accounts): plant capacity 21 m m2/yr",
+   "date": "2026-10-22",
+   "link": "Case pack",
+   "grade": "C2"
+  },
+  {
+   "id": "p0",
+   "name": "Average net price, base year",
+   "unit": "EUR/m2",
+   "type": "actual",
+   "date": "2026-10-22",
+   "link": "Case pack table",
+   "grade": "C2",
+   "history": {
+    "series": "price_hist",
+    "stat": "last"
+   }
+  },
+  {
+   "id": "infl",
+   "name": "Price inflation on tiles (baseline)",
+   "unit": "%",
+   "type": "assumption",
+   "base": 0.024,
+   "source": "IMF Article IV Portugal (June 2026, via Lusa/ECO News): HICP 3.4% 2026, 2.3% 2027; ~2% thereafter (ECB target). Average 2025-29 ~2.4%",
+   "date": "2026-10-22",
+   "link": "https://econews.pt/2026/06/25/imf-cuts-portugal-growth-forecast-sees-balanced-budget/",
+   "grade": "C2",
+   "low": 0.018,
+   "high": 0.032,
+   "fetch": {
+    "source": "IMF Article IV / WEO (via ECO News)",
+    "url": "https://econews.pt/2026/06/25/imf-cuts-portugal-growth-forecast-sees-balanced-budget/",
+    "status": "done"
+   },
+   "request": {
+    "database": "Oxford Economics (or IMF WEO database direct)",
+    "table": "Portugal > CPI / HICP inflation, annual % change",
+    "filters": "Portugal, annual",
+    "years": "2025-2030",
+    "export_as": "oxford_pt_cpi_2025_2030.xlsx"
+   },
+   "history_note": "Average price grew 4.3%/yr 2021-24 (energy-cost pass-through in the 2022 spike); forward price growth = CPI only, so the do-nothing case does not assume another pass-through cycle"
+  },
+  {
+   "id": "to_m",
+   "name": "Unit conversion: m m2 x EUR/m2 = EURm",
+   "unit": "x",
+   "type": "conversion",
+   "base": 1,
+   "source": "Arithmetic",
+   "date": "2026-10-22",
+   "link": "-",
+   "grade": "A1"
+  },
+  {
+   "id": "elec_gwh",
+   "name": "Electricity bought, base year",
+   "unit": "GWh",
+   "type": "actual",
+   "base": 95,
+   "source": "Case pack (Lusitania brief, fictional reported accounts): electricity bought 2024",
+   "date": "2026-10-22",
+   "link": "Case pack",
+   "grade": "C2"
+  },
+  {
+   "id": "gas_gwh",
+   "name": "Natural gas used, base year",
+   "unit": "GWh",
+   "type": "actual",
+   "base": 410,
+   "source": "Case pack (Lusitania brief, fictional reported accounts): natural gas used 2024",
+   "date": "2026-10-22",
+   "link": "Case pack",
+   "grade": "C2"
+  },
+  {
+   "id": "elec_price",
+   "name": "Avoided grid electricity price (excl. VAT, band 70-150 GWh)",
+   "unit": "EURm/GWh",
+   "type": "assumption",
+   "base": 0.0973,
+   "source": "Eurostat nrg_pc_205, Portugal, non-household band ID 70-150 GWh, excl. VAT & recoverable taxes: average 2024S2-2026S1 = 0.0973 EUR/kWh (low 2026S1 0.0789, high 2024S2 0.114). NB case-pack energy cost 47.9m implies higher all-in prices than Eurostat (see Data Request: client invoices)",
+   "date": "2026-10-22",
+   "link": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_pc_205?geo=PT&nrg_cons=MWH70000-149999&tax=X_VAT&currency=EUR&unit=KWH",
+   "grade": "A2",
+   "low": 0.0789,
+   "high": 0.114,
+   "fetch": {
+    "source": "Eurostat nrg_pc_205",
+    "url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_pc_205?geo=PT&nrg_cons=MWH70000-149999&tax=X_VAT&currency=EUR&unit=KWH",
+    "status": "done"
+   },
+   "request": {
+    "database": "Client (case pack / team)",
+    "table": "Lusitania energy invoices 2024: electricity EUR/MWh and gas EUR/MWh incl. network, CO2 (EU ETS) costs",
+    "filters": "Aveiro plant",
+    "years": "2024",
+    "export_as": "client_lusitania_energy_invoices_2024.xlsx"
+   }
+  },
+  {
+   "id": "elec_price_g",
+   "name": "Annual change in grid electricity price",
+   "unit": "%",
+   "type": "assumption",
+   "base": 0.0,
+   "source": "Modelling choice: flat real-terms; Eurostat 2022-26 series volatile (0.06-0.15 EUR/kWh); range -3%/+2%",
+   "date": "2026-10-22",
+   "link": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_pc_205?geo=PT&nrg_cons=MWH70000-149999&tax=X_VAT&currency=EUR&unit=KWH",
+   "grade": "D3",
+   "low": -0.03,
+   "high": 0.02
+  },
+  {
+   "id": "gas_price",
+   "name": "Avoided natural gas price (excl. VAT, band 1-4 m GJ)",
+   "unit": "EURm/GWh",
+   "type": "assumption",
+   "base": 0.0423,
+   "source": "Eurostat nrg_pc_203, Portugal, non-household band I5 (1-4m GJ), excl. VAT: average 2024S2-2026S1 = 11.76 EUR/GJ GCV = 42.3 EUR/MWh (low 2025S2 10.46 -> 37.7; high 2024S2 12.66 -> 45.6). Excludes EU ETS CO2 cost",
+   "date": "2026-10-22",
+   "link": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_pc_203?geo=PT&nrg_cons=GJ1000000-3999999&tax=X_VAT&currency=EUR&unit=GJ_GCV",
+   "grade": "A2",
+   "low": 0.0377,
+   "high": 0.0456,
+   "fetch": {
+    "source": "Eurostat nrg_pc_203",
+    "url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_pc_203?geo=PT&nrg_cons=GJ1000000-3999999&tax=X_VAT&currency=EUR&unit=GJ_GCV",
+    "status": "done"
+   }
+  },
+  {
+   "id": "gas_price_g",
+   "name": "Annual change in natural gas price",
+   "unit": "%",
+   "type": "assumption",
+   "base": 0.0,
+   "source": "Modelling choice: flat; TTF forward curves in mild backwardation; range -5%/+3%",
+   "date": "2026-10-22",
+   "link": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_pc_203?geo=PT&nrg_cons=GJ1000000-3999999&tax=X_VAT&currency=EUR&unit=GJ_GCV",
+   "grade": "D3",
+   "low": -0.05,
+   "high": 0.03
+  },
+  {
+   "id": "pv_mwp",
+   "name": "Solar PV installed (scale)",
+   "unit": "MWp",
+   "type": "plan",
+   "base": 12,
+   "source": "Brief: roof and adjacent land available for up to 12 MWp; scale = the brief's maximum (DEFAULT (team unavailable, card unconfirmed))",
+   "date": "2026-10-22",
+   "link": "Case pack",
+   "grade": "C2",
+   "low": 8,
+   "high": 12
+  },
+  {
+   "id": "pv_yield",
+   "name": "Solar yield, Aveiro (fixed, optimal tilt, 14% losses)",
+   "unit": "GWh/MWp",
+   "type": "assumption",
+   "base": 1.2755,
+   "source": "PVGIS v5.3 (EC JRC), lat 40.64 lon -8.65, 1 kWp crystalline-Si, 14% system loss: E_y = 1,275.5 kWh/kWp; interannual SD 33.7 kWh -> range +/- 2 SD",
+   "date": "2026-10-22",
+   "link": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=40.64&lon=-8.65&peakpower=1&loss=14",
+   "grade": "A2",
+   "low": 1.208,
+   "high": 1.343,
+   "fetch": {
+    "source": "PVGIS",
+    "url": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=40.64&lon=-8.65&peakpower=1&loss=14",
+    "status": "done"
+   }
+  },
+  {
+   "id": "pv_selfuse",
+   "name": "Share of solar output used on site",
+   "unit": "%",
+   "type": "assumption",
+   "base": 0.97,
+   "source": "Derived: 12 MWp peak vs plant average load 95 GWh/8,760 h = 10.8 MW with continuous kilns; output < 20% of electricity bought, so near-full self-consumption; weekend/holiday surplus 0-10%",
+   "date": "2026-10-22",
+   "link": "Case pack + PVGIS",
+   "grade": "D3",
+   "low": 0.9,
+   "high": 1.0
+  },
+  {
+   "id": "pv_build_years",
+   "name": "Solar: years to full output (build)",
+   "unit": "years",
+   "type": "plan",
+   "base": 1,
+   "source": "DEFAULT rollout plan: 1-year build (DEFAULT (team unavailable, card unconfirmed)); C&I PV of 10 MWp typically 6-12 months",
+   "date": "2026-10-22",
+   "link": "-",
+   "grade": "D3",
+   "low": 1,
+   "high": 2
+  },
+  {
+   "id": "pv_capex_mwp",
+   "name": "Solar capex per MWp",
+   "unit": "EURm/MWp",
+   "type": "cost",
+   "base": 0.72,
+   "source": "IRENA Renewable Power Generation Costs in 2024 (via pv magazine 2025-07-23): Europe average total installed cost USD 779/kW = ~EUR 0.72m/MWp at 1.08 USD/EUR; rooftop C&I usually higher -> high 0.95",
+   "date": "2026-10-22",
+   "link": "https://pv-magazine-usa.com/2025/07/23/global-average-solar-lcoe-stood-at-0-043-kwh-in-2024-says-irena/",
+   "grade": "C2",
+   "low": 0.6,
+   "high": 0.95,
+   "fetch": {
+    "source": "IRENA RPGC 2024 (pv magazine summary)",
+    "url": "https://pv-magazine-usa.com/2025/07/23/global-average-solar-lcoe-stood-at-0-043-kwh-in-2024-says-irena/",
+    "status": "done"
+   }
+  },
+  {
+   "id": "pv_om_mwp",
+   "name": "Solar O&M per MWp per year",
+   "unit": "EURm/MWp",
+   "type": "cost",
+   "base": 0.012,
+   "source": "IRENA RPGC O&M benchmarks for Europe, USD 10-20/kW/yr (not re-fetched in this run: verify)",
+   "date": "2026-10-22",
+   "link": "https://www.irena.org/Publications",
+   "grade": "C3",
+   "low": 0.008,
+   "high": 0.018
+  },
+  {
+   "id": "pv_degradation",
+   "name": "Solar output degradation per year",
+   "unit": "%",
+   "type": "assumption",
+   "base": 0.005,
+   "source": "Jordan & Kurtz (2013), Prog. Photovolt. 21(1): median degradation 0.5%/yr across ~2,000 field studies",
+   "date": "2026-10-22",
+   "link": "doi:10.1002/pip.1182",
+   "grade": "B2",
+   "low": 0.003,
+   "high": 0.008
+  },
+  {
+   "id": "g1_launch",
+   "name": "Launch year: Solar",
+   "unit": "year",
+   "type": "plan",
+   "base": 2026,
+   "source": "DEFAULT launch (DEFAULT (team unavailable, card unconfirmed))",
+   "date": "2026-10-22",
+   "link": "-",
+   "grade": "D3"
+  },
+  {
+   "id": "ee_cut",
+   "name": "Cut energy waste: % of gas use avoided at full rollout",
+   "unit": "%",
+   "type": "uplift",
+   "base": 0.09,
+   "source": "Reference class of kiln/dryer heat recovery and combustion retrofits in tile plants (see bench_source); base = median",
+   "date": "2026-10-22",
+   "link": "https://ceramicworldweb.com/en/news/fincibec-optimises-its-plant-siti-bt-equipment",
+   "grade": "C3",
+   "low": 0.047,
+   "high": 0.15,
+   "bench_low": 0.047,
+   "bench_median": 0.09,
+   "bench_high": 0.15,
+   "bench_source": "reference class, 5 cases of gas saved in ceramic-tile plants: heat pipes on dryer 4-5% (EU DREAM/Brunel, Mirage), burner air preheat from cooling air 4.7% (Usak Univ. study), same with 200-250C air 8-10% (same study), Fincibec new combustion + hot-air recovery 15% (Ceramic World Web), roller-kiln cooling-gas recovery up to 17% (Univ. Jaume I, modelled). p25 4.7%, median 9%, p75 15%",
+   "request": {
+    "database": "Scopus",
+    "table": "TITLE-ABS-KEY(ceramic tile AND kiln AND (heat recovery OR energy saving))",
+    "filters": "articles, 2010-2026, report % gas saved per plant",
+    "years": "2010-2026",
+    "export_as": "scopus_tile_kiln_energy_saving.csv"
+   }
+  },
+  {
+   "id": "ee_rollout",
+   "name": "Cut energy waste: years to full rollout",
+   "unit": "years",
+   "type": "plan",
+   "base": 3,
+   "source": "DEFAULT: retrofit kilns and dryers over 3 years (DEFAULT (team unavailable, card unconfirmed); skill pattern for efficiency programmes)",
+   "date": "2026-10-22",
+   "link": "-",
+   "grade": "D3",
+   "low": 2,
+   "high": 4
+  },
+  {
+   "id": "ee_capex_gwh",
+   "name": "Cut energy waste: capex per GWh/yr of gas avoided",
+   "unit": "EURm/(GWh/yr)",
+   "type": "cost",
+   "base": 0.08,
+   "source": "Derived from reported paybacks: heat recovery 8-10 months (Usak/Bilecik studies) to 2-3 yrs for combustion retrofits, at 42 EUR/MWh -> 0.035-0.13 EURm per GWh/yr; base ~1.9-yr payback. PROVISIONAL",
+   "date": "2026-10-22",
+   "link": "https://avesis.usak.edu.tr/yayin/62b55104-0e6f-4053-aba5-3609aeddbaec/investigation-of-the-energy-recovery-in-the-burners-of-the-ceramic-factory-kiln",
+   "grade": "D3",
+   "low": 0.04,
+   "high": 0.15
+  },
+  {
+   "id": "g2_launch",
+   "name": "Launch year: Cut energy waste",
+   "unit": "year",
+   "type": "plan",
+   "base": 2026,
+   "source": "DEFAULT launch (DEFAULT (team unavailable, card unconfirmed))",
+   "date": "2026-10-22",
+   "link": "-",
+   "grade": "D3"
+  },
+  {
+   "id": "us_market",
+   "name": "US ceramic tile consumption",
+   "unit": "m m2",
+   "type": "assumption",
+   "base": 238.6,
+   "source": "TCNA 2024 US Ceramic Tile Market Report: 2.70 bn sq ft in 2024 (FCNews 2025-04); TCNA 2025 report: market -4.9% in 2025 (Ceramic World Web / FCNews 2026-03) -> 2.57 bn sq ft x 0.0929 = 238.6 m m2",
+   "date": "2026-10-22",
+   "link": "https://ceramicworldweb.com/en/economics-and-markets/us-ceramic-tile-market-decreased-49-2025 ; https://www.tileletter.com/?p=51084 ; https://www.fcnews.net/2025/04/tcna-2024-u-s-ceramic-tile-market-report/",
+   "grade": "B2",
+   "low": 225.0,
+   "high": 255.0,
+   "fetch": {
+    "source": "TCNA via Ceramic World Web / FCNews",
+    "url": "https://www.fcnews.net/2026/03/tcna-releases-2025-u-s-ceramic-tile-market-report/",
+    "status": "done"
+   },
+   "request": {
+    "database": "Statista (or Euromonitor Passport)",
+    "table": "Market Insights > Building materials > Ceramic tiles > United States: volume and price",
+    "filters": "United States, volume m2 and USD",
+    "years": "2020-2030",
+    "export_as": "statista_us_ceramic_tiles_2020_2030.xlsx"
+   }
+  },
+  {
+   "id": "us_share",
+   "name": "Enter the US: target share of US consumption at full ramp (scale)",
+   "unit": "%",
+   "type": "plan",
+   "base": 0.003,
+   "source": "DEFAULT scale (DEFAULT (team unavailable, card unconfirmed), question 2): 0.3% of US consumption = ~0.72 m m2 (~4% of today's volume); context: Portugal's total ceramic exports to the US ~USD 104m in 2025 (Trading Economics / UN Comtrade)",
+   "date": "2026-10-22",
+   "link": "https://tradingeconomics.com/portugal/exports/united-states/ceramic-products",
+   "grade": "D3",
+   "low": 0.0015,
+   "high": 0.005
+  },
+  {
+   "id": "spare_cap",
+   "name": "Ceiling: spare plant capacity (capacity - base-year volume)",
+   "unit": "m m2",
+   "type": "actual",
+   "base": 4.0,
+   "source": "Derived from the case pack: 21.0 - 17.0 m m2",
+   "date": "2026-10-22",
+   "link": "Case pack",
+   "grade": "C2"
+  },
+  {
+   "id": "us_price",
+   "name": "US realised price (landed, CIF + duty)",
+   "unit": "EUR/m2",
+   "type": "assumption",
+   "base": 16.0,
+   "source": "TCNA import value from Spain (CIF+duty): USD 1.78/sqft 1Q24, 1.66 1Q25 -> ~1.72 x 10.764 = USD 18.5/m2 = EUR 16.0 at 1.16 USD/EUR; Italy USD 2.29/sqft = high side",
+   "date": "2026-10-22",
+   "link": "https://www.tileletter.com/?p=51084 ; https://www.fcnews.net/2025/04/tcna-2024-u-s-ceramic-tile-market-report/",
+   "grade": "C2",
+   "low": 14.0,
+   "high": 18.5
+  },
+  {
+   "id": "us_margin",
+   "name": "Enter the US: contribution margin",
+   "unit": "%",
+   "type": "assumption",
+   "base": 0.3,
+   "source": "Derived: (US price 16.0 - variable cost 6.85 [= (1 - CM) x 10.70] - freight ~2.0 - duty 10% of customs value ~1.25 [CTDA alert 2026-07-27: EU tile tariff = 10% all-in] - agent 5%) / 16.0 ~ 30%. PROVISIONAL",
+   "date": "2026-10-22",
+   "link": "https://ctasc.com/ctda-member-alert-presidential-action-results-in-lower-tariffs-on-ceramic-tile-imported-into-the-us-from-the-european-union-higher-tariffs-on-tile-from-turkey-brazil/",
+   "grade": "D3",
+   "low": 0.2,
+   "high": 0.38
+  },
+  {
+   "id": "us_ramp",
+   "name": "Enter the US: years to target share",
+   "unit": "years",
+   "type": "plan",
+   "base": 4,
+   "source": "DEFAULT rollout (DEFAULT (team unavailable, card unconfirmed))",
+   "date": "2026-10-22",
+   "link": "-",
+   "grade": "D3",
+   "low": 3,
+   "high": 5
+  },
+  {
+   "id": "us_opex",
+   "name": "Enter the US: annual sales/logistics cost (team, agents, showroom)",
+   "unit": "EURm",
+   "type": "cost",
+   "base": 1.2,
+   "source": "Team estimate: 4 FTE US sales + agent network + trade shows (Coverings) + warehousing. PROVISIONAL",
+   "date": "2026-10-22",
+   "link": "-",
+   "grade": "D4",
+   "low": 0.8,
+   "high": 1.8
+  },
+  {
+   "id": "us_capex",
+   "name": "Enter the US: launch investment (displays, samples, stock)",
+   "unit": "EURm",
+   "type": "cost",
+   "base": 1.5,
+   "source": "Team estimate: displays/samples for ~200 dealers + initial US stock. PROVISIONAL",
+   "date": "2026-10-22",
+   "link": "-",
+   "grade": "D4",
+   "low": 1.0,
+   "high": 2.5
+  },
+  {
+   "id": "p2a_launch",
+   "name": "Launch year: Enter the US",
+   "unit": "year",
+   "type": "plan",
+   "base": 2026,
+   "source": "DEFAULT launch (DEFAULT (team unavailable, card unconfirmed))",
+   "date": "2026-10-22",
+   "link": "-",
+   "grade": "D3"
+  },
+  {
+   "id": "dom_vol",
+   "name": "Domestic (Portugal) tiles sold, base year",
+   "unit": "m m2",
+   "type": "actual",
+   "base": 6.46,
+   "source": "Derived from the case pack: 17.0 m m2 x (1 - 62% export share), assuming equal price at home and abroad",
+   "date": "2026-10-22",
+   "link": "Case pack",
+   "grade": "C3"
+  },
+  {
+   "id": "onl_share",
+   "name": "Sell online to installers: online sales as % of domestic volume at full ramp",
+   "unit": "%",
+   "type": "uplift",
+   "base": 0.027,
+   "source": "Eurostat isoc_ec_evaln2: web-sales B2B share of turnover (enterprises 10+), base = reference-class median",
+   "date": "2026-10-22",
+   "link": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/isoc_ec_evaln2?geo=PT&geo=EU27_2020&size_emp=GE10",
+   "grade": "B3",
+   "low": 0.018,
+   "high": 0.035,
+   "bench_low": 0.0184,
+   "bench_median": 0.0268,
+   "bench_high": 0.0346,
+   "bench_source": "reference class, 12 observations of B2B web-sales share of turnover, Eurostat isoc_ec_evaln2 (E_AWSVAL_B2BG): PT C22_C23 2022-25 = 1.66/1.12/1.88/1.71%; EU C22_C23 2022-25 = 2.64/2.19/2.72/3.42%; PT manufacturing 2024-25 = 4.24/4.93%; EU manufacturing 2024-25 = 2.84/3.57%. p25 1.84%, median 2.68%, p75 3.46%",
+   "fetch": {
+    "source": "Eurostat isoc_ec_evaln2",
+    "url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/isoc_ec_evaln2?geo=PT&geo=EU27_2020&size_emp=GE10",
+    "status": "done"
+   }
+  },
+  {
+   "id": "onl_price",
+   "name": "Online net price to installers",
+   "unit": "EUR/m2",
+   "type": "assumption",
+   "base": 12.3,
+   "source": "Derived: average price 10.70 + ~15% of the distributor markup retained (building-materials distributor gross margin typically 20-30%). PROVISIONAL",
+   "date": "2026-10-22",
+   "link": "-",
+   "grade": "D3",
+   "low": 10.7,
+   "high": 13.9
+  },
+  {
+   "id": "onl_margin",
+   "name": "Sell online: contribution margin",
+   "unit": "%",
+   "type": "assumption",
+   "base": 0.33,
+   "source": "Derived: (12.3 - variable cost 6.85 - last-mile delivery ~1.0 - payments 1%) / 12.3 ~ 35%; base 33%. PROVISIONAL",
+   "date": "2026-10-22",
+   "link": "-",
+   "grade": "D3",
+   "low": 0.25,
+   "high": 0.4
+  },
+  {
+   "id": "onl_ramp",
+   "name": "Sell online: years to full ramp",
+   "unit": "years",
+   "type": "plan",
+   "base": 3,
+   "source": "DEFAULT rollout (DEFAULT (team unavailable, card unconfirmed))",
+   "date": "2026-10-22",
+   "link": "-",
+   "grade": "D3",
+   "low": 2,
+   "high": 4
+  },
+  {
+   "id": "onl_opex",
+   "name": "Sell online: annual portal cost (team, platform, marketing)",
+   "unit": "EURm",
+   "type": "cost",
+   "base": 0.35,
+   "source": "Team estimate: 3 FTE + SaaS B2B platform + digital marketing. PROVISIONAL",
+   "date": "2026-10-22",
+   "link": "-",
+   "grade": "D4",
+   "low": 0.25,
+   "high": 0.55
+  },
+  {
+   "id": "onl_capex",
+   "name": "Sell online: portal build",
+   "unit": "EURm",
+   "type": "cost",
+   "base": 0.6,
+   "source": "Team estimate: B2B portal + ERP integration. PROVISIONAL",
+   "date": "2026-10-22",
+   "link": "-",
+   "grade": "D4",
+   "low": 0.4,
+   "high": 1.0
+  },
+  {
+   "id": "p2b_launch",
+   "name": "Launch year: Sell online to installers",
+   "unit": "year",
+   "type": "plan",
+   "base": 2026,
+   "source": "DEFAULT launch (DEFAULT (team unavailable, card unconfirmed))",
+   "date": "2026-10-22",
+   "link": "-",
+   "grade": "D3"
+  },
+  {
+   "id": "prem_shift",
+   "name": "Premium design line: shift of volume into premium (8% -> 15%)",
+   "unit": "%",
+   "type": "plan",
+   "base": 0.07,
+   "source": "DEFAULT scale (DEFAULT (team unavailable, card unconfirmed)): premium share of volume from 8% (case pack) to 15% by full ramp",
+   "date": "2026-10-22",
+   "link": "Case pack",
+   "grade": "D3",
+   "low": 0.04,
+   "high": 0.1
+  },
+  {
+   "id": "prem_up",
+   "name": "Premium design line: peak uplift in average price (mix)",
+   "unit": "%",
+   "type": "uplift",
+   "base": 0.042,
+   "source": "Derived: price uplift = shift 7pp x (1.6 - 1) premium price ratio (case pack) = 4.2%. NB the plan input prem_shift is NOT linked by formula (spec limitation); ranges set consistently",
+   "date": "2026-10-22",
+   "link": "Case pack",
+   "grade": "D4",
+   "low": 0.024,
+   "high": 0.06,
+   "bench_low": 0.024,
+   "bench_median": 0.042,
+   "bench_high": 0.06,
+   "bench_source": "PROVISIONAL, fewer than 5 cases: premium/large-format share shifts of 4-10pp in 3-5 yrs implied by capacity additions (Kaleseramik slab capacity +50%, Atlas Concorde slab capacity doubled, Guocera 6->13.5m m2) x 0.6 price premium -> p25 2.4%, median 4.2%, p75 6.0%. Factiva request issued",
+   "request": {
+    "database": "Factiva",
+    "table": "(porcelain OR ceramic tile) AND (large format OR slab OR premium) AND (share of sales OR mix) AND %",
+    "filters": "Ceramic World Review, Tile & Stone Journal, company press releases; 5+ producers",
+    "years": "2015-2026",
+    "export_as": "factiva_tile_premium_mix_cases.rtf"
+   }
+  },
+  {
+   "id": "prem_margin",
+   "name": "Premium design line: contribution margin on incremental price",
+   "unit": "%",
+   "type": "assumption",
+   "base": 0.65,
+   "source": "Derived: premium sells at 1.6x price with ~1.3x variable cost -> incremental margin (0.6 - 0.3 x 0.64) / 0.6 = 68%. PROVISIONAL",
+   "date": "2026-10-22",
+   "link": "Case pack",
+   "grade": "D3",
+   "low": 0.5,
+   "high": 0.75
+  },
+  {
+   "id": "prem_ramp",
+   "name": "Premium design line: years to full mix shift",
+   "unit": "years",
+   "type": "plan",
+   "base": 3,
+   "source": "DEFAULT rollout (DEFAULT (team unavailable, card unconfirmed))",
+   "date": "2026-10-22",
+   "link": "-",
+   "grade": "D3",
+   "low": 2,
+   "high": 4
+  },
+  {
+   "id": "prem_capex_m2",
+   "name": "Premium design line: capex per m2/yr of large-format capacity",
+   "unit": "EUR/m2",
+   "type": "cost",
+   "base": 15.0,
+   "source": "Kaleseramik EUR 15m for +0.8m m2/yr slab capacity = 18.8 EUR/m2 (Ceramic World Web); Guocera RM420m (~EUR 85m) for +7.5m m2 = ~11 EUR/m2 (The Star, 2026-08-01)",
+   "date": "2026-10-22",
+   "link": "https://ceramicworldweb.com/en/news/kaleseramik-new-investments-large-format-tiles-and-slabs",
+   "grade": "C3",
+   "low": 11.0,
+   "high": 19.0
+  },
+  {
+   "id": "prem_opex",
+   "name": "Premium design line: annual design & marketing cost",
+   "unit": "EURm",
+   "type": "cost",
+   "base": 0.5,
+   "source": "Team estimate: design studio + collections + catalogues. PROVISIONAL",
+   "date": "2026-10-22",
+   "link": "-",
+   "grade": "D4",
+   "low": 0.3,
+   "high": 0.8
+  },
+  {
+   "id": "p3a_launch",
+   "name": "Launch year: Premium design line",
+   "unit": "year",
+   "type": "plan",
+   "base": 2026,
+   "source": "DEFAULT launch (DEFAULT (team unavailable, card unconfirmed))",
+   "date": "2026-10-22",
+   "link": "-",
+   "grade": "D3"
+  },
+  {
+   "id": "arch_up",
+   "name": "Architects' choice: peak uplift in tiles sold",
+   "unit": "%",
+   "type": "uplift",
+   "base": 0.03,
+   "source": "PROVISIONAL analogue: personal-selling elasticity (Albers, Mantrala & Sridhar 2010, JMR 47(5), mean ~0.34) x ~+10% sales effort from a 4-rep specification team = ~3.4%; no tile case data found",
+   "date": "2026-10-22",
+   "link": "doi:10.1509/jmkr.47.5.840",
+   "grade": "D4",
+   "low": 0.015,
+   "high": 0.05,
+   "bench_low": 0.015,
+   "bench_median": 0.03,
+   "bench_high": 0.05,
+   "bench_source": "PROVISIONAL, fewer than 5 cases: sales-force elasticity meta-analysis (Albers et al. 2010) applied to +5-15% effort; Solus Ceramics showroom +25% public sales (outlier, not specification). Factiva request issued",
+   "request": {
+    "database": "Factiva",
+    "table": "(tile OR ceramic OR flooring) AND (architect OR specification) AND (sales OR projects) AND (increase OR grew) AND %",
+    "filters": "building-products manufacturers, 5+ cases",
+    "years": "2010-2026",
+    "export_as": "factiva_spec_selling_cases.rtf"
+   }
+  },
+  {
+   "id": "arch_ramp",
+   "name": "Architects' choice: years to full effect (project lead times)",
+   "unit": "years",
+   "type": "plan",
+   "base": 3,
+   "source": "DEFAULT: specification wins convert over 2-4 years of project pipeline (DEFAULT (team unavailable, card unconfirmed))",
+   "date": "2026-10-22",
+   "link": "-",
+   "grade": "D3",
+   "low": 2,
+   "high": 4
+  },
+  {
+   "id": "arch_opex",
+   "name": "Architects' choice: annual specification team cost",
+   "unit": "EURm",
+   "type": "cost",
+   "base": 0.6,
+   "source": "Team estimate: 4 specification reps x EUR 80k + samples, BIM/CAD library, CPD events. PROVISIONAL",
+   "date": "2026-10-22",
+   "link": "-",
+   "grade": "D4",
+   "low": 0.4,
+   "high": 0.9
+  },
+  {
+   "id": "p3b_launch",
+   "name": "Launch year: Become the architects' choice",
+   "unit": "year",
+   "type": "plan",
+   "base": 2026,
+   "source": "DEFAULT launch (DEFAULT (team unavailable, card unconfirmed))",
+   "date": "2026-10-22",
+   "link": "-",
+   "grade": "D3"
+  },
+  {
+   "id": "margin",
+   "name": "Contribution margin on incremental core revenue",
+   "unit": "%",
+   "type": "assumption",
+   "base": 0.36,
+   "source": "PROVISIONAL: 1 - raw materials ~30% - energy 26% (case pack 47.9/181.9) - other variable ~8%; EBITDA margin 14% (case pack). Pull SABI peers to confirm",
+   "date": "2026-10-22",
+   "link": "Case pack + SABI request",
+   "grade": "D3",
+   "low": 0.3,
+   "high": 0.42,
+   "request": {
+    "database": "SABI",
+    "table": "Peers (Revigres, Recer, Love Tiles, Grespor/Cinca) > Cuentas modelo normal > P&L: aprovisionamentos, FSE, energy, staff",
+    "filters": "CAE 23311 Portugal, individual, EUR thousands",
+    "years": "2021-2024",
+    "export_as": "sabi_pt_tile_peers_pl_2021_2024.xlsx"
+   }
+  },
+  {
+   "id": "tax",
+   "name": "Corporate tax rate (marginal, incl. derramas)",
+   "unit": "%",
+   "type": "assumption",
+   "base": 0.235,
+   "source": "Portugal IRC 19% in 2026 (OE2026), falling to 17% by 2028 (econews 2025-07-18) + municipal derrama up to 1.5% + state derrama 3-5% band -> 23.5% (low 21.5% once IRC = 17%, high 25.5%)",
+   "date": "2026-10-22",
+   "link": "https://econews.pt/2025/07/18/portugal-corporate-tax-to-fall-to-17-by-2029-government-approves-proposal-this-friday/",
+   "grade": "B2",
+   "low": 0.215,
+   "high": 0.255
+  },
+  {
+   "id": "rf",
+   "name": "Risk-free rate (EUR)",
+   "unit": "%",
+   "type": "assumption",
+   "base": 0.0265,
+   "source": "Portugal 10y yield 3.65% (Trading Economics, 2026-08-21) - Damodaran default spread 1.02% = 2.63%",
+   "date": "2026-10-22",
+   "link": "https://tradingeconomics.com/portugal/government-bond-yield/news/577117",
+   "grade": "C2",
+   "low": 0.024,
+   "high": 0.03,
+   "request": {
+    "database": "Bloomberg",
+    "table": "GTPTE10Y Govt / GTDEM10Y Govt: 10y yields",
+    "filters": "daily, last close",
+    "years": "2026",
+    "export_as": "bloomberg_pt_de_10y_2026.xlsx"
+   }
+  },
+  {
+   "id": "beta",
+   "name": "Levered beta (European building materials)",
+   "unit": "x",
+   "type": "assumption",
+   "base": 1.03,
+   "source": "Damodaran betaEurope.xls (Jan 2026), Building Materials, 84 firms: levered beta 1.03, D/E 17.9%, unlevered (cash-corrected) 0.94",
+   "date": "2026-10-22",
+   "link": "https://pages.stern.nyu.edu/~adamodar/pc/datasets/betaEurope.xls",
+   "grade": "B2",
+   "low": 0.94,
+   "high": 1.15,
+   "fetch": {
+    "source": "Damodaran betaEurope",
+    "url": "https://pages.stern.nyu.edu/~adamodar/pc/datasets/betaEurope.xls",
+    "status": "done"
+   }
+  },
+  {
+   "id": "erp",
+   "name": "Mature-market equity risk premium",
+   "unit": "%",
+   "type": "assumption",
+   "base": 0.0423,
+   "source": "Damodaran ctryprem (Jan 2026): Aaa mature-market ERP 4.23% (US 4.46%)",
+   "date": "2026-10-22",
+   "link": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/ctryprem.html",
+   "grade": "B2",
+   "low": 0.04,
+   "high": 0.05,
+   "fetch": {
+    "source": "Damodaran ctryprem",
+    "url": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/ctryprem.html",
+    "status": "done"
+   }
+  },
+  {
+   "id": "crp",
+   "name": "Country risk premium, Portugal",
+   "unit": "%",
+   "type": "assumption",
+   "base": 0.0155,
+   "source": "Damodaran ctryprem (Jan 2026): Portugal A3, CRP 1.55%",
+   "date": "2026-10-22",
+   "link": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/ctryprem.html",
+   "grade": "B2",
+   "low": 0.01,
+   "high": 0.02
+  },
+  {
+   "id": "kd",
+   "name": "Pre-tax cost of debt",
+   "unit": "%",
+   "type": "assumption",
+   "base": 0.055,
+   "source": "Portugal 10y 3.65% + ~1.8% BBB-equivalent corporate spread for a 1.8x net debt/EBITDA mid-cap. PROVISIONAL",
+   "date": "2026-10-22",
+   "link": "Orbis request",
+   "grade": "D3",
+   "low": 0.045,
+   "high": 0.065,
+   "request": {
+    "database": "Orbis",
+    "table": "Lusitania peers > Financial profile > interest paid / average financial debt",
+    "filters": "Portuguese tile producers, unconsolidated",
+    "years": "2022-2024",
+    "export_as": "orbis_pt_tile_peers_interest_2022_2024.xlsx"
+   }
+  },
+  {
+   "id": "wd",
+   "name": "Debt weight D/(D+E)",
+   "unit": "%",
+   "type": "assumption",
+   "base": 0.15,
+   "source": "Damodaran Building Materials Europe D/E 17.9% -> D/V 15%; Lusitania own ~26% (net debt 45.9m vs EV ~7x EBITDA)",
+   "date": "2026-10-22",
+   "link": "https://pages.stern.nyu.edu/~adamodar/pc/datasets/betaEurope.xls",
+   "grade": "B3",
+   "low": 0.1,
+   "high": 0.26
+  }
+ ],
+ "leaves": [
+  {
+   "id": "volume",
+   "name": "Tiles sold",
+   "unit": "m m2",
+   "base": "vol0",
+   "growth": "vol_g",
+   "ceiling": "cap"
+  },
+  {
+   "id": "price",
+   "name": "Average net price",
+   "unit": "EUR/m2",
+   "base": "p0",
+   "inflation": "infl"
+  }
+ ],
+ "streams": [
+  {
+   "id": "core",
+   "name": "Tile sales (existing channels)",
+   "leaves": [
+    "volume",
+    "price"
+   ],
+   "scale": "to_m"
+  }
+ ],
+ "pillars": [
+  {
+   "id": "green",
+   "name": "1. Go green",
+   "initiatives": [
+    {
+     "id": "g1",
+     "name": "Solar",
+     "model": "build",
+     "kind": "saving",
+     "mechanism": "Install up to 12 MWp PV on roof and land -> generate electricity on site -> buy fewer GWh from the grid",
+     "volume": {
+      "name": "Solar electricity used on site",
+      "unit": "GWh",
+      "drivers": [
+       "pv_mwp",
+       "pv_yield",
+       "pv_selfuse"
+      ],
+      "ceiling": "elec_gwh",
+      "ceiling_name": "electricity bought"
+     },
+     "price": {
+      "name": "Avoided grid electricity price",
+      "unit": "EURm/GWh",
+      "base": "elec_price",
+      "growth": "elec_price_g"
+     },
+     "launch_year": "g1_launch",
+     "ramp": {
+      "type": "linear",
+      "years_to_peak": "pv_build_years"
+     },
+     "decay": "pv_degradation",
+     "capex": [
+      "pv_mwp",
+      "pv_capex_mwp"
+     ],
+     "opex": [
+      "pv_mwp",
+      "pv_om_mwp"
+     ]
+    },
+    {
+     "id": "g2",
+     "name": "Cut energy waste",
+     "model": "build",
+     "kind": "saving",
+     "mechanism": "Kiln/dryer heat recovery and burner upgrades -> less gas per m2 -> fewer GWh of gas bought",
+     "volume": {
+      "name": "Natural gas avoided",
+      "unit": "GWh",
+      "drivers": [
+       "gas_gwh",
+       "ee_cut"
+      ],
+      "ceiling": "gas_gwh",
+      "ceiling_name": "gas used"
+     },
+     "price": {
+      "name": "Avoided natural gas price",
+      "unit": "EURm/GWh",
+      "base": "gas_price",
+      "growth": "gas_price_g"
+     },
+     "launch_year": "g2_launch",
+     "ramp": {
+      "type": "linear",
+      "years_to_peak": "ee_rollout"
+     },
+     "capex": [
+      "gas_gwh",
+      "ee_cut",
+      "ee_capex_gwh"
+     ],
+     "capex_years": "ee_rollout"
+    }
+   ]
+  },
+  {
+   "id": "abroad",
+   "name": "2. Grow abroad",
+   "initiatives": [
+    {
+     "id": "p2a",
+     "name": "Enter the US",
+     "model": "build",
+     "kind": "revenue",
+     "mechanism": "Sell tiles to US distributors/dealers -> new buyers -> new revenue stream",
+     "volume": {
+      "name": "Tiles sold in the US",
+      "unit": "m m2",
+      "drivers": [
+       "us_market",
+       "us_share"
+      ],
+      "ceiling": "spare_cap",
+      "ceiling_name": "spare plant capacity"
+     },
+     "price": {
+      "name": "US realised price",
+      "unit": "EUR/m2",
+      "base": "us_price",
+      "growth": "infl"
+     },
+     "scale": [
+      "to_m"
+     ],
+     "margin": "us_margin",
+     "launch_year": "p2a_launch",
+     "ramp": {
+      "type": "linear",
+      "years_to_peak": "us_ramp"
+     },
+     "opex": "us_opex",
+     "capex": "us_capex"
+    },
+    {
+     "id": "p2b",
+     "name": "Sell online to installers",
+     "model": "build",
+     "kind": "revenue",
+     "mechanism": "B2B web portal -> reaches installers that distributors do not serve -> new revenue stream",
+     "volume": {
+      "name": "Tiles sold online to installers",
+      "unit": "m m2",
+      "drivers": [
+       "dom_vol",
+       "onl_share"
+      ],
+      "ceiling": "spare_cap",
+      "ceiling_name": "spare plant capacity"
+     },
+     "price": {
+      "name": "Online net price to installers",
+      "unit": "EUR/m2",
+      "base": "onl_price",
+      "growth": "infl"
+     },
+     "scale": [
+      "to_m"
+     ],
+     "margin": "onl_margin",
+     "launch_year": "p2b_launch",
+     "ramp": {
+      "type": "linear",
+      "years_to_peak": "onl_ramp"
+     },
+     "opex": "onl_opex",
+     "capex": "onl_capex"
+    }
+   ]
+  },
+  {
+   "id": "premium",
+   "name": "3. Go premium",
+   "initiatives": [
+    {
+     "id": "p3a",
+     "name": "Premium design line",
+     "mechanism": "Launch large-format/design collections -> mix shifts to tiles at 1.6x price -> higher average price",
+     "leaf": "price",
+     "uplift": "prem_up",
+     "margin": "prem_margin",
+     "launch_year": "p3a_launch",
+     "ramp": {
+      "type": "linear",
+      "years_to_peak": "prem_ramp"
+     },
+     "opex": "prem_opex",
+     "capex": [
+      "prem_shift",
+      "vol0",
+      "prem_capex_m2"
+     ],
+     "capex_years": "prem_ramp"
+    },
+    {
+     "id": "p3b",
+     "name": "Become the architects' choice",
+     "mechanism": "Specification team, BIM library and CPD for architects -> tiles specified in projects -> more m2 sold",
+     "leaf": "volume",
+     "uplift": "arch_up",
+     "launch_year": "p3b_launch",
+     "ramp": {
+      "type": "linear",
+      "years_to_peak": "arch_ramp"
+     },
+     "opex": "arch_opex"
+    }
+   ]
+  }
+ ],
+ "split_rules": {},
+ "finance": {
+  "margin": "margin",
+  "tax": "tax",
+  "rf": "rf",
+  "beta": "beta",
+  "erp": "erp",
+  "crp": "crp",
+  "kd": "kd",
+  "debt_weight": "wd"
+ },
+ "sensitivity": {
+  "tornado_top": 10,
+  "steps": 5
+ },
+ "objectives": [
+  {
+   "id": "profit",
+   "name": "Profitability",
+   "kind": "profitability"
+  }
+ ]
+}

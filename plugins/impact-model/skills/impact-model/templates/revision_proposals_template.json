@@ -1,0 +1,19 @@
+{
+ "version_a": {"spec": "spec_vA.json", "model": "Company_Impact_Model_vA.xlsx"},
+ "proposals": [
+  {"id": "R1",
+   "title": "<one line: the strategy decision that changes>",
+   "strategy": "<initiative id(s) affected>",
+   "change": "<what the team would do differently: rollout, scale, operating model, channel, segment, new initiative>",
+   "why": "<which tornado driver it moves; where the reference class puts it (median / p75)>",
+   "evidence": [
+     {"source": "<publisher, report, the figure>", "link": "<URL or database path>", "date": "YYYY-MM-DD", "grade": "B2", "finding": "<the fact used>"}
+   ],
+   "risk": "<what could go wrong; what is not modelled>",
+   "patch": [
+     {"op": "set", "path": "pillars/<pillar id>/initiatives/<initiative id>/ramp", "value": {"type": "linear", "years_to_peak": "<new plan input id>"}},
+     {"op": "add", "path": "inputs", "value": {"id": "<new plan input id>", "name": "<...>", "unit": "years", "type": "plan", "base": 3, "source": "<evidence>", "date": "YYYY-MM-DD", "link": "<...>", "grade": "B2"}}
+   ],
+   "decision": {"status": "pending", "by": "", "on": "", "note": ""}}
+ ]
+}

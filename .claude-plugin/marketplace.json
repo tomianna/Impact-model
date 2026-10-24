@@ -1,0 +1,9 @@
+{
+  "name": "impact-model",
+  "description": "The impact-model skill for case teams",
+  "owner": {"name": "Tommaso Iannaccone"},
+  "plugins": [
+    {"name": "impact-model", "source": "./plugins/impact-model",
+     "description": "Objectives-first impact model, checker, revisions and defence pack"}
+  ]
+}
