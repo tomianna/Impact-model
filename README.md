@@ -64,6 +64,17 @@ Ask for the defence pack at any point, e.g. "write the defence pack for version 
 | `Defence_Pack.md` | Headline on the case objectives, framework views, judge Q&A, weakest assumptions |
 | `<Company>_Impact_Model_vB.xlsx` | Only after you accept revisions |
 
+## Built-in protections (Claude Code plugin)
+
+The plugin ships two hooks that run before every file edit and shell command:
+- **Version A is locked.** A built `*_vA.xlsx` cannot be edited, overwritten, moved or deleted, by hand or by a
+  shell command; change the spec and rebuild instead. Changing `spec_vA.json` or rebuilding version A asks you
+  first (fine for new data, never for a revision).
+- **Your team decides.** Claude must ask you before it marks a revision accepted or rejected, or runs
+  `revisions.py apply`.
+
+On claude.ai, hooks don't run; the skill follows the same rules from its instructions.
+
 ## Tips
 
 - **Open the workbook in Excel** (not a preview) so the Data Tables recalculate. Change inputs only on the
